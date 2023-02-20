@@ -1,26 +1,116 @@
 const prompt = require('prompt-sync')();
 
 let peoples = parseInt(prompt("Hello enter number of peoples in your order: "));
-let peices = parseInt(prompt("Hello enter number of pieces do you want: "));
+let peices = parseInt(prompt("Hello enter number of Total pieces do you want: "));
 // let size = parseInt(prompt("Enter you need pizza size (5inch,7inch,10inch,15inch,24inch)- enter number only: "));
 
-function CustomizePizza(NumPeoples, NumPieces) {
-    console.log(`I think you need ${NumPieces} pieces because you have ${NumPeoples} peoples`);
-    if(NumPieces > 0 && NumPieces < 5) {
-        console.log( `You can buy this has 4 pieces \n 5 inch size \n Lowest Price is according to your need $3`);
-    } else if (NumPieces > 4 && NumPieces < 7){
-        console.log( `You can buy this has 6 pieces \n 7 inch size \n Lowest Price is according to your need $5 `);
-    }else if (NumPieces > 6 && NumPieces < 11){
-        console.log( `You can buy this has 10 pieces \n 10 inch size \n Lowest Price is according to your need$8 `);
-    }else if (NumPieces > 10 && NumPieces < 16){
-        console.log( `You can buy this has 15 pieces \n  15inch size \n Lowest Price is according to your need $12 `);
-    }else if (NumPieces > 15 && NumPieces < 25){
-        console.log( `You can buy this has 24 pieces \n 24 inch size \n Lowest Price is according to your need $18 `);
-    }else if (NumPieces > 24){
-        let num_of_24inch_pizzas = NumPieces/24;
-        let total_price = num_of_24inch_pizzas * 18;
-        console.log(` For group of people get 24 inch pizzas: ${num_of_24inch_pizzas} and your Total price is $${total_price}` );
+function CustomizePizza(Num_Of_Peoples, Num_Of_Pieces) {
+    
+    console.log(`I think you need ${Num_Of_Pieces} pieces because you have ${Num_Of_Peoples} peoples`);
+
+    let inch_5_pieces_default_price = 3;
+    let inch_7_pieces_default_price = 5;
+    let inch_10_pieces_default_price = 8;
+    let inch_15_pieces_default_price = 12;
+    let inch_24_pieces_default_price = 18;
+
+    let Num_of_inch_5_pizzas = Math.ceil(Num_Of_Pieces/4);
+    let num_of_inch_5_pieces = Num_of_inch_5_pizzas*4;
+
+    let Num_of_inch_7_pizzas = Math.ceil(Num_Of_Pieces/6);
+    let num_of_inch_7_pieces = Num_of_inch_5_pizzas*6;
+
+    let Num_of_inch_10_pizzas = Math.ceil(Num_Of_Pieces/10);
+    let num_of_inch_10_pieces = Num_of_inch_5_pizzas*10;
+
+    let Num_of_inch_15_pizzas = Math.ceil(Num_Of_Pieces/15);
+    let num_of_inch_15_pieces = Num_of_inch_5_pizzas*15;
+
+    let Num_of_inch_24_pizzas = Math.ceil(Num_Of_Pieces/24);
+    let num_of_inch_24_pieces = Num_of_inch_5_pizzas*24;
+
+    if(Num_Of_Pieces == 0) {
+
+        console.log("Number of pieces can't be zoro");
+    } else if(Num_Of_Pieces > 0 && Num_Of_Pieces < 5) {
+
+        console.log( `You can buy this has 4 pieces and 5 inch size
+        \nLowest Price is according to your need $3`);
+
+    } else if (Num_Of_Pieces > 4 && Num_Of_Pieces < 7){
+
+        let price_of_inch_5_pieces = Num_of_inch_5_pizzas*inch_5_pieces_default_price;
+    
+        if(inch_5_pieces_default_price < price_of_inch_5_pieces) {
+            console.log( `You can buy this order two methods using;
+            \nFirst method is 5inch-size ${Num_of_inch_5_pizzas} pizzas total pieces- ${num_of_inch_5_pieces} total price: $${price_of_inch_5_pieces}
+            \nSecond method is 1 pizza with 6 pieces 7 inch size total price: $${inch_7_pieces_default_price}
+            \n\n Lowest Price is second way according to your need $5 `);
+        }  
+    }else if (Num_Of_Pieces > 6 && Num_Of_Pieces < 11){
+
+        let price_of_inch_5_pieces = Num_of_inch_5_pizzas*inch_5_pieces_default_price;
+        let price_of_inch_7_pieces = Num_of_inch_7_pizzas*inch_7_pieces_default_price;
+
+        let minvalue = Math.min(inch_10_pieces_default_price, price_of_inch_5_pieces, price_of_inch_7_pieces);
+
+        console.log( `You can buy this order three methods using;
+            \nFirst method is 5inch-size ${Num_of_inch_5_pizzas} pizzas total pieces- ${num_of_inch_5_pieces} total price: $${price_of_inch_5_pieces}
+            \nSecond method is 7inch-size ${Num_of_inch_7_pizzas} pizzas total pieces- ${num_of_inch_7_pieces} total price: $${price_of_inch_7_pieces}
+            \nThird method is 1 pizza with 10 pieces 10inch size total price: $${inch_10_pieces_default_price}
+            \n\n Lowest Price is for your need: $${minvalue} `);
+
+        
+    }else if (Num_Of_Pieces > 10 && Num_Of_Pieces < 16){
+
+        let price_of_inch_5_pieces = Num_of_inch_5_pizzas*inch_5_pieces_default_price;
+        let price_of_inch_7_pieces = Num_of_inch_7_pizzas*inch_7_pieces_default_price;
+        let price_of_inch_10_pieces = Num_of_inch_10_pizzas*inch_10_pieces_default_price;
+
+        let minvalue = Math.min(inch_15_pieces_default_price, price_of_inch_5_pieces, price_of_inch_7_pieces,price_of_inch_10_pieces);
+
+        console.log( `You can buy this order four methods using;
+            \nFirst method is 5inch-size ${Num_of_inch_5_pizzas} pizzas total pieces- ${num_of_inch_5_pieces} total price: $${price_of_inch_5_pieces}
+            \nSecond method is 7inch-size ${Num_of_inch_7_pizzas} pizzas total pieces- ${num_of_inch_7_pieces} total price: $${price_of_inch_7_pieces}
+            \nThird method is 10inch-size ${Num_of_inch_10_pizzas} pizzas total pieces- ${num_of_inch_10_pieces} total price: $${price_of_inch_10_pieces}
+            \nFourth method is 1 pizza with 15 pieces 15inch size total price: $${inch_15_pieces_default_price}
+            \n\n Lowest Price is for your need: $${minvalue} `);
+        
+    }else if (Num_Of_Pieces > 15 && Num_Of_Pieces < 25){
+
+        let price_of_inch_5_pieces = Num_of_inch_5_pizzas*inch_5_pieces_default_price;
+        let price_of_inch_7_pieces = Num_of_inch_7_pizzas*inch_7_pieces_default_price;
+        let price_of_inch_10_pieces = Num_of_inch_10_pizzas*inch_10_pieces_default_price;
+        let price_of_inch_15_pieces = Num_of_inch_15_pizzas*inch_15_pieces_default_price;
+
+        let minvalue = Math.min(inch_24_pieces_default_price, price_of_inch_5_pieces, price_of_inch_7_pieces,price_of_inch_10_pieces,price_of_inch_15_pieces);
+
+        console.log( `You can buy this order five methods using;
+            \nFirst method is 5inch-size ${Num_of_inch_5_pizzas} pizzas total pieces- ${num_of_inch_5_pieces} total price: $${price_of_inch_5_pieces}
+            \nSecond method is 7inch-size ${Num_of_inch_7_pizzas} pizzas total pieces- ${num_of_inch_7_pieces} total price: $${price_of_inch_7_pieces}
+            \nThird method is 10inch-size ${Num_of_inch_10_pizzas} pizzas total pieces- ${num_of_inch_10_pieces} total price: $${price_of_inch_10_pieces}
+            \nFour method is 15inch-size ${Num_of_inch_15_pizzas} pizzas total pieces- ${num_of_inch_15_pieces} total price: $${price_of_inch_15_pieces}
+            \nFifth method is 1 pizza with 24 pieces 24inch size total price: $${inch_15_pieces_default_price}
+            \n\n Lowest Price is for your need: $${minvalue} `);
+
+    }else if (Num_Of_Pieces > 24 && Num_Of_Pieces < 9999999991){
+
+        let price_of_inch_5_pieces = Num_of_inch_5_pizzas*inch_5_pieces_default_price;
+        let price_of_inch_7_pieces = Num_of_inch_7_pizzas*inch_7_pieces_default_price;
+        let price_of_inch_10_pieces = Num_of_inch_10_pizzas*inch_10_pieces_default_price;
+        let price_of_inch_15_pieces = Num_of_inch_15_pizzas*inch_15_pieces_default_price;
+        let price_of_inch_24_pieces = Num_of_inch_24_pizzas*inch_24_pieces_default_price;
+
+        let minvalue = Math.min(price_of_inch_5_pieces, price_of_inch_7_pieces,price_of_inch_10_pieces,price_of_inch_15_pieces,price_of_inch_24_pieces);
+
+        console.log( `You can buy this order five methods using;
+            \nFirst method is 5inch-size ${Num_of_inch_5_pizzas} pizzas total pieces- ${num_of_inch_5_pieces} total price: $${price_of_inch_5_pieces}
+            \nSecond method is 7inch-size ${Num_of_inch_7_pizzas} pizzas total pieces- ${num_of_inch_7_pieces} total price: $${price_of_inch_7_pieces}
+            \nThird method is 10inch-size ${Num_of_inch_10_pizzas} pizzas total pieces- ${num_of_inch_10_pieces} total price: $${price_of_inch_10_pieces}
+            \nFour method is 15inch-size ${Num_of_inch_15_pizzas} pizzas total pieces- ${num_of_inch_15_pieces} total price: $${price_of_inch_15_pieces}
+            \nFifth method is 24inch-size ${Num_of_inch_24_pizzas} pizzas total pieces- ${num_of_inch_24_pieces} total price: $${price_of_inch_24_pieces}
+            \n\n Lowest Price is for your need: $${minvalue} `);
     }
     
 }
-console.log(CustomizePizza(peoples, peices))
+console.log(CustomizePizza(peoples, peices));
