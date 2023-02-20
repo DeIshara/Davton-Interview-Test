@@ -18,16 +18,16 @@ function CustomizePizza(Num_Of_Peoples, Num_Of_Pieces) {
     let num_of_inch_5_pieces = Num_of_inch_5_pizzas*4;
 
     let Num_of_inch_7_pizzas = Math.ceil(Num_Of_Pieces/6);
-    let num_of_inch_7_pieces = Num_of_inch_5_pizzas*6;
+    let num_of_inch_7_pieces = Num_of_inch_7_pizzas*6;
 
     let Num_of_inch_10_pizzas = Math.ceil(Num_Of_Pieces/10);
-    let num_of_inch_10_pieces = Num_of_inch_5_pizzas*10;
+    let num_of_inch_10_pieces = Num_of_inch_10_pizzas*10;
 
     let Num_of_inch_15_pizzas = Math.ceil(Num_Of_Pieces/15);
-    let num_of_inch_15_pieces = Num_of_inch_5_pizzas*15;
+    let num_of_inch_15_pieces = Num_of_inch_15_pizzas*15;
 
     let Num_of_inch_24_pizzas = Math.ceil(Num_Of_Pieces/24);
-    let num_of_inch_24_pieces = Num_of_inch_5_pizzas*24;
+    let num_of_inch_24_pieces = Num_of_inch_24_pizzas*24;
 
     if(Num_Of_Pieces == 0) {
 
